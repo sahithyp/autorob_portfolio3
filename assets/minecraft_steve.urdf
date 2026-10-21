@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- Minecraft-style humanoid. Same joint names/tree as test/urdfs/mini_humanoid.urdf,
+     so viewer/choreographies/humanoid_wave.json works on it.
+     Scale: 1 Minecraft pixel = 0.04 m. Torso frame is the center of the body. -->
+<robot name="minecraft_steve">
+  <material name="skin"><color rgba="0.74 0.54 0.42 1"/></material>
+  <material name="shirt"><color rgba="0.00 0.66 0.66 1"/></material>
+  <material name="pants"><color rgba="0.23 0.22 0.55 1"/></material>
+  <material name="shoes"><color rgba="0.42 0.42 0.42 1"/></material>
+  <material name="hair"><color rgba="0.27 0.18 0.10 1"/></material>
+
+  <material name="eye_white"><color rgba="0.95 0.95 0.95 1"/></material>
+  <material name="pupil"><color rgba="0.25 0.20 0.55 1"/></material>
+  <material name="nose"><color rgba="0.56 0.37 0.28 1"/></material>
+  <material name="mouth"><color rgba="0.40 0.24 0.17 1"/></material>
+
+  <!-- body: 8 x 12 x 4 px (y wide, z tall, x deep) -->
+  <link name="torso">
+    <visual><geometry><box size="0.16 0.32 0.48"/></geometry><material name="shirt"><color rgba="0.00 0.66 0.66 1"/></material></visual>
+  </link>
+
+  <!-- head: 8 x 8 x 8 px, pivots at the neck (top of the body) -->
+  <joint name="neck_yaw" type="revolute"><parent link="torso"/><child link="head"/><origin xyz="0 0 0.24"/><axis xyz="0 0 1"/><limit lower="-1.5" upper="1.5" effort="1" velocity="1"/></joint>
+  <link name="head">
+    <visual><origin xyz="0 0 0.16"/><geometry><box size="0.32 0.32 0.32"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual>
+  </link>
+  <joint name="hair_joint" type="fixed"><parent link="head"/><child link="hair"/><origin xyz="0 0 0.30"/></joint>
+  <link name="hair">
+    <visual><geometry><box size="0.34 0.34 0.08"/></geometry><material name="hair"><color rgba="0.27 0.18 0.10 1"/></material></visual>
+  </link>
+  <!-- face on the +x side of the head (1 px = 0.04 m; thin boxes just proud of the surface) -->
+  <joint name="eye_white_l_joint" type="fixed"><parent link="head"/><child link="eye_white_l"/><origin xyz="0.165 0.12 0.15"/></joint>
+  <link name="eye_white_l"><visual><geometry><box size="0.01 0.04 0.04"/></geometry><material name="eye_white"><color rgba="0.95 0.95 0.95 1"/></material></visual></link>
+  <joint name="eye_pupil_l_joint" type="fixed"><parent link="head"/><child link="eye_pupil_l"/><origin xyz="0.166 0.08 0.15"/></joint>
+  <link name="eye_pupil_l"><visual><geometry><box size="0.01 0.04 0.04"/></geometry><material name="pupil"><color rgba="0.25 0.20 0.55 1"/></material></visual></link>
+  <joint name="eye_white_r_joint" type="fixed"><parent link="head"/><child link="eye_white_r"/><origin xyz="0.165 -0.12 0.15"/></joint>
+  <link name="eye_white_r"><visual><geometry><box size="0.01 0.04 0.04"/></geometry><material name="eye_white"><color rgba="0.95 0.95 0.95 1"/></material></visual></link>
+  <joint name="eye_pupil_r_joint" type="fixed"><parent link="head"/><child link="eye_pupil_r"/><origin xyz="0.166 -0.08 0.15"/></joint>
+  <link name="eye_pupil_r"><visual><geometry><box size="0.01 0.04 0.04"/></geometry><material name="pupil"><color rgba="0.25 0.20 0.55 1"/></material></visual></link>
+  <joint name="nose_joint" type="fixed"><parent link="head"/><child link="nose"/><origin xyz="0.165 0 0.11"/></joint>
+  <link name="nose"><visual><geometry><box size="0.01 0.08 0.04"/></geometry><material name="nose"><color rgba="0.56 0.37 0.28 1"/></material></visual></link>
+  <joint name="mouth_joint" type="fixed"><parent link="head"/><child link="mouth"/><origin xyz="0.165 0 0.07"/></joint>
+  <link name="mouth"><visual><geometry><box size="0.01 0.16 0.04"/></geometry><material name="mouth"><color rgba="0.40 0.24 0.17 1"/></material></visual></link>
+  <joint name="hair_back_joint" type="fixed"><parent link="head"/><child link="hair_back"/><origin xyz="-0.165 0 0.20"/></joint>
+  <link name="hair_back"><visual><geometry><box size="0.01 0.32 0.24"/></geometry><material name="hair"><color rgba="0.27 0.18 0.10 1"/></material></visual></link>
+  <joint name="antenna" type="prismatic"><parent link="head"/><child link="antenna_tip"/><origin xyz="0 0 0.34"/><axis xyz="0 0 1"/><limit lower="0" upper="0.3" effort="1" velocity="1"/></joint>
+  <link name="antenna_tip">
+    <visual><origin xyz="0 0 0.02"/><geometry><box size="0.04 0.04 0.04"/></geometry><material name="shoes"><color rgba="0.42 0.42 0.42 1"/></material></visual>
+  </link>
+
+  <!-- arms: 4 x 12 x 4 px, split upper 5 + fore 5 + hand 2 px; pivot at the shoulder -->
+  <joint name="l_shoulder" type="revolute"><parent link="torso"/><child link="l_upper"/><origin xyz="0 0.24 0.24"/><axis xyz="0 1 0"/><limit lower="-3" upper="3" effort="1" velocity="1"/></joint>
+  <link name="l_upper"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+  <joint name="l_sleeve_joint" type="fixed"><parent link="l_upper"/><child link="l_sleeve"/><origin xyz="0 0 0"/></joint>
+  <link name="l_sleeve"><visual><origin xyz="0 0 -0.08"/><geometry><box size="0.17 0.17 0.16"/></geometry><material name="shirt"><color rgba="0.00 0.66 0.66 1"/></material></visual></link>
+  <joint name="l_elbow" type="revolute"><parent link="l_upper"/><child link="l_fore"/><origin xyz="0 0 -0.20"/><axis xyz="0 1 0"/><limit lower="0" upper="2.5" effort="1" velocity="1"/></joint>
+  <link name="l_fore"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+  <joint name="l_wrist" type="continuous"><parent link="l_fore"/><child link="l_hand"/><origin xyz="0 0 -0.20"/><axis xyz="0 0 1"/></joint>
+  <link name="l_hand"><visual><origin xyz="0 0 -0.04"/><geometry><box size="0.16 0.16 0.08"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+
+  <joint name="r_shoulder" type="revolute"><parent link="torso"/><child link="r_upper"/><origin xyz="0 -0.24 0.24"/><axis xyz="0 1 0"/><limit lower="-3" upper="3" effort="1" velocity="1"/></joint>
+  <link name="r_upper"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+  <joint name="r_sleeve_joint" type="fixed"><parent link="r_upper"/><child link="r_sleeve"/><origin xyz="0 0 0"/></joint>
+  <link name="r_sleeve"><visual><origin xyz="0 0 -0.08"/><geometry><box size="0.17 0.17 0.16"/></geometry><material name="shirt"><color rgba="0.00 0.66 0.66 1"/></material></visual></link>
+  <joint name="r_elbow" type="revolute"><parent link="r_upper"/><child link="r_fore"/><origin xyz="0 0 -0.20"/><axis xyz="0 1 0"/><limit lower="0" upper="2.5" effort="1" velocity="1"/></joint>
+  <link name="r_fore"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+  <joint name="r_wrist" type="continuous"><parent link="r_fore"/><child link="r_hand"/><origin xyz="0 0 -0.20"/><axis xyz="0 0 1"/></joint>
+  <link name="r_hand"><visual><origin xyz="0 0 -0.04"/><geometry><box size="0.16 0.16 0.08"/></geometry><material name="skin"><color rgba="0.74 0.54 0.42 1"/></material></visual></link>
+
+  <!-- legs: 4 x 12 x 4 px, split thigh 6 + shin 5 + shoe 1 px; pivot at the hip (bottom of the body) -->
+  <joint name="l_hip" type="revolute"><parent link="torso"/><child link="l_thigh"/><origin xyz="0 0.08 -0.24"/><axis xyz="0 1 0"/><limit lower="-2" upper="2" effort="1" velocity="1"/></joint>
+  <link name="l_thigh"><visual><origin xyz="0 0 -0.12"/><geometry><box size="0.16 0.16 0.24"/></geometry><material name="pants"><color rgba="0.23 0.22 0.55 1"/></material></visual></link>
+  <joint name="l_knee" type="revolute"><parent link="l_thigh"/><child link="l_shin"/><origin xyz="0 0 -0.24"/><axis xyz="0 1 0"/><limit lower="0" upper="2.5" effort="1" velocity="1"/></joint>
+  <link name="l_shin"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="pants"><color rgba="0.23 0.22 0.55 1"/></material></visual></link>
+  <joint name="l_ankle" type="fixed"><parent link="l_shin"/><child link="l_foot"/><origin xyz="0 0 -0.20"/></joint>
+  <link name="l_foot"><visual><origin xyz="0.02 0 -0.02"/><geometry><box size="0.20 0.16 0.04"/></geometry><material name="shoes"><color rgba="0.42 0.42 0.42 1"/></material></visual></link>
+
+  <joint name="r_hip" type="revolute"><parent link="torso"/><child link="r_thigh"/><origin xyz="0 -0.08 -0.24"/><axis xyz="0 1 0"/><limit lower="-2" upper="2" effort="1" velocity="1"/></joint>
+  <link name="r_thigh"><visual><origin xyz="0 0 -0.12"/><geometry><box size="0.16 0.16 0.24"/></geometry><material name="pants"><color rgba="0.23 0.22 0.55 1"/></material></visual></link>
+  <joint name="r_knee" type="revolute"><parent link="r_thigh"/><child link="r_shin"/><origin xyz="0 0 -0.24"/><axis xyz="0 1 0"/><limit lower="0" upper="2.5" effort="1" velocity="1"/></joint>
+  <link name="r_shin"><visual><origin xyz="0 0 -0.10"/><geometry><box size="0.16 0.16 0.20"/></geometry><material name="pants"><color rgba="0.23 0.22 0.55 1"/></material></visual></link>
+  <joint name="r_ankle" type="fixed"><parent link="r_shin"/><child link="r_foot"/><origin xyz="0 0 -0.20"/></joint>
+  <link name="r_foot"><visual><origin xyz="0.02 0 -0.02"/><geometry><box size="0.20 0.16 0.04"/></geometry><material name="shoes"><color rgba="0.42 0.42 0.42 1"/></material></visual></link>
+</robot>
