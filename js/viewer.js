@@ -202,6 +202,18 @@ function setPlaying(on) {
   syncButtons();
 }
 
+// ------------------------------------------------------------------ video: muted, with the synthesized music played alongside
+
+const videoEl = document.querySelector(".video video");
+if (videoEl) {
+  const videoMusic = new Music(120);
+  videoEl.muted = true;
+  const sync = () => { if (!videoEl.paused && !videoEl.ended) videoMusic.start(videoEl.currentTime); };
+  videoEl.addEventListener("play", sync);
+  videoEl.addEventListener("seeked", sync);
+  for (const ev of ["pause", "ended", "emptied"]) videoEl.addEventListener(ev, () => videoMusic.stop());
+}
+
 // ------------------------------------------------------------------ UI
 
 function syncButtons() {
