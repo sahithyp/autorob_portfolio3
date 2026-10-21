@@ -52,14 +52,20 @@
 
   <!-- ===================================================== live replay -->
   <section class="panel" id="robot" aria-labelledby="h-robot">
-    <h2 id="h-robot">Live replay</h2>
+    <h2 id="h-robot">Watch it, then try it</h2>
     <p>
       This is the same dance, replayed in your browser. It is not a video and not a hand-made animation:
       every frame is the set of 4&times;4 matrices my runtime published on <code>/xform_world</code>, recorded once and drawn with three.js.
       Drag to orbit, scroll to zoom, click a beat in the timeline to jump to it.
+      Then switch to <b>Try it yourself</b> to move Steve's joints, change the tempo, or rewrite the dance and watch it run live.
     </p>
 
-    <div class="stage-box">
+    <div class="tabs" role="tablist" aria-label="Replay or playground">
+      <button class="tab" role="tab" id="tab-replay" aria-selected="true" aria-controls="stage-box" type="button">&#9654; Watch the recording</button>
+      <button class="tab" role="tab" id="tab-try" aria-selected="false" aria-controls="panel-try" type="button">&#9881; Try it yourself</button>
+    </div>
+
+    <div class="stage-box" id="stage-box">
       <canvas id="stage" aria-label="3D view of the Minecraft robot dancing" role="img"></canvas>
       <div class="hud" aria-live="off">
         <small>BEAT <span id="beatno">1 / 48</span></small>
@@ -82,6 +88,33 @@
       <button class="btn" id="view-front" type="button">Front view</button>
       <label><input type="checkbox" id="follow" checked> Follow robot</label>
       <label title="Render at half resolution and scale up, for chunky pixels"><input type="checkbox" id="crisp" checked> Pixel look</label>
+    </div>
+
+    <div id="panel-try" hidden>
+      <div class="note">
+        <b>This tab runs live in your browser.</b> It is a JavaScript version of my runtime's joint servo, finite state machine and forward kinematics
+        (not the recording). Drag a slider to pose Steve by hand, or press <b>Run moonwalk</b> and he follows the 48-state dance on the beat.
+      </div>
+      <div class="controls" role="group" aria-label="Playground">
+        <button class="btn" id="run" type="button">&#9654; Run moonwalk</button>
+        <button class="btn" id="stopdance" type="button">&#9632; Stop dance</button>
+        <button class="btn" id="resetpose" type="button">&#8634; Reset pose</button>
+        <label>Tempo <input type="range" id="tempo" min="60" max="160" step="5" value="120" aria-label="Tempo in beats per minute"> <span id="tempov">120 BPM</span></label>
+      </div>
+      <p class="dim" style="margin:4px 0 8px">Faster tempos are harder: each beat, the joints have to reach their targets before the machine moves on, so push it far enough and Steve starts falling behind the music.</p>
+      <h3>Joints</h3>
+      <div id="joints" class="joints"></div>
+      <details id="editor-box">
+        <summary>Edit the dance (JSON)</summary>
+        <p class="dim">A dance is a list of states. Each state sets joint targets (<code>target</code>), how long to hold (<code>hold</code>, seconds), where the body glides to (<code>base</code>: x, y, z, yaw) and which state comes next (<code>transitions</code> + <code>on_arrival</code>). Joint names are in the table above.</p>
+        <textarea id="editor" spellcheck="false" aria-label="Dance JSON" rows="12"></textarea>
+        <div class="controls">
+          <button class="btn" id="apply" type="button">&#9654; Apply &amp; run</button>
+          <button class="btn" id="example" type="button">Load a small example (wave)</button>
+          <button class="btn" id="restore" type="button">Restore the moonwalk</button>
+        </div>
+        <div id="editor-msg" role="status"></div>
+      </details>
     </div>
 
     <div id="timeline" role="group" aria-label="Choreography timeline, one cell per beat"></div>
@@ -200,6 +233,12 @@ group.matrixWorldNeedsUpdate = <span class="kw">true</span>;</pre>
       Between two recorded frames (~33&nbsp;ms apart) the page interpolates linearly. The development viewer, <code>viewer/server.py</code>, subscribes to the live topic instead.
     </div>
     <p>
+      <b>The "Try it yourself" tab</b> is different: it runs live, so it needs the maths in the browser. <code>js/sim.js</code> is a JavaScript port of my runtime's joint servo,
+      state machine and forward kinematics. To check the port I ran the dance through it and compared every link's matrix with the recording from the Python runtime:
+      the average difference per matrix entry is about 0.01 (rotation entries run from &minus;1 to 1, positions are in metres).
+      The only bigger gaps are at the instant a beat changes, when an arm can be moving at over 30&nbsp;rad/s, so a 30&nbsp;ms timing difference in the recording shows up. The check is in <code>tools/sim_vs_replay.html</code>.
+    </p>
+    <p>
       A detail I had to fix along the way: the spec only requires <code>/xform_world</code> at 5&nbsp;Hz or faster, and the reference rate is 10&nbsp;Hz, which looks choppy for a dance.
       Under <code>make demo</code> the publishers run at 30&nbsp;Hz; <code>make run</code> keeps the reference rate.
     </p>
@@ -240,9 +279,15 @@ python3 -m http.server 8000</pre>
 
 <script>
   // If the video file is not in the repo yet, show a clear placeholder instead of a dead player.
+  // The failed fetch can finish before or after this runs, so check the video's state as well as listening for the error.
   (function () {
-    var src = document.getElementById("video-src"), miss = document.getElementById("video-missing");
-    src.addEventListener("error", function () { miss.hidden = false; });
+    var video = document.querySelector(".video video"), miss = document.getElementById("video-missing");
+    function check() {
+      if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) miss.hidden = false;
+    }
+    video.addEventListener("error", check, true);      // capture: a <source> error does not bubble
+    window.addEventListener("load", function () { check(); setTimeout(check, 1500); });
+    check();
   })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

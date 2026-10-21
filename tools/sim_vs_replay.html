@@ -1,0 +1,61 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>sim vs replay</title>
+<!-- Dev check: run js/sim.js through the dance and compare every link matrix with the frames recorded from
+     the Python runtime.   chrome --headless=new --dump-dom http://localhost:8000/tools/sim_vs_replay.html -->
+<pre id="out">running…</pre>
+<script type="module">
+import { parseRobot, Sim } from "../js/sim.js";
+const [urdf, cho, rep] = await Promise.all([
+  fetch("../assets/minecraft_steve.urdf").then(r => r.text()),
+  fetch("../assets/moonwalk.json").then(r => r.json()),
+  fetch("../assets/replay.json").then(r => r.json())]);
+const sim = new Sim(parseRobot(urdf));
+const err = sim.load(cho);
+const D = rep.duration, DT = 1 / 120;
+const rows = [];                                   // sim frames over the SECOND loop, as the recorder did
+sim.start(0);
+for (let t = 0; t <= 2 * D; t += DT) {
+  sim.step(t);
+  if (t >= D - 0.2) rows.push({ t: t - D, m: sim.matrices() });
+}
+const simIdx = Object.fromEntries(rep.links.map(n => [n, sim.robot.links.indexOf(n)]));   // the two list links in different orders
+const keep = [0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14];     // 12 of the 16 entries, as stored in replay.json
+function diffAt(offset) {                          // worst and mean |sim - replay| over all frames and links
+  let worst = 0, sum = 0, n = 0, where = "";
+  rep.times.forEach((tr, f) => {
+    const target = tr + offset;
+    let lo = 0; while (lo + 1 < rows.length && rows[lo + 1].t <= target) lo++;
+    const A = rows[lo], B = rows[Math.min(lo + 1, rows.length - 1)];
+    const u = B.t > A.t ? Math.min(1, Math.max(0, (target - A.t) / (B.t - A.t))) : 0;
+    rep.links.forEach((name, k) => {
+      keep.forEach((e, c) => {
+        const s = A.m[simIdx[name]][e] + (B.m[simIdx[name]][e] - A.m[simIdx[name]][e]) * u, r = rep.frames[f][k * 12 + c], d = Math.abs(s - r);
+        sum += d; n++; if (d > worst) { worst = d; where = `${name} t=${tr.toFixed(2)}`; }
+      });
+    });
+  });
+  return { worst, mean: sum / n, where };
+}
+const lines = ["load error: " + err, `sim frames: ${rows.length}, replay frames: ${rep.times.length}`];
+let best = null;
+for (let off = -0.15; off <= 0.1501; off += 0.01) {
+  const d = diffAt(off);
+  if (Math.abs(off) < 1e-9) lines.push(`offset 0.00 s: worst ${d.worst.toFixed(4)} (${d.where}), mean ${d.mean.toFixed(5)}`);
+  if (!best || d.mean < best.d.mean) best = { off, d };
+}
+lines.push(`best offset ${best.off.toFixed(2)} s: worst ${best.d.worst.toFixed(4)} (${best.d.where}), mean ${best.d.mean.toFixed(5)}`);
+// where do they disagree? mean error per beat and per link (offset 0)
+const perBeat = new Array(48).fill(0), perBeatN = new Array(48).fill(0), perLink = {};
+rep.times.forEach((tr, f) => {
+  let lo = 0; while (lo + 1 < rows.length && rows[lo + 1].t <= tr) lo++;
+  const A = rows[lo], beat = Math.min(47, Math.max(0, Math.floor(tr / 0.5)));
+  rep.links.forEach((name, k) => keep.forEach((e, c) => {
+    const d = Math.abs(A.m[simIdx[name]][e] - rep.frames[f][k * 12 + c]);
+    perBeat[beat] += d; perBeatN[beat]++; perLink[name] = (perLink[name] || 0) + d / (rep.times.length * 12);
+  }));
+});
+lines.push("per-beat mean error: " + perBeat.map((v, i) => (v / perBeatN[i]).toFixed(2)).join(" "));
+lines.push("worst links: " + Object.entries(perLink).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([n, v]) => n + " " + v.toFixed(3)).join(", "));
+document.getElementById("out").textContent = "RESULT\n" + lines.join("\n");
+</script>
