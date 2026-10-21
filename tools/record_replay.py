@@ -22,6 +22,7 @@ CHOREO = REPO / "viewer" / "choreographies" / "moonwalk.json"
 OUT = HERE / "assets" / "replay.json"
 HOST, PORT = "127.0.0.1", 9095
 STANDING_Z = 0.72           # straight legs; the choreography's first state is a squat from here
+SEAM = 0.05                 # s: stop this early so the wrap interpolates between two settled finale poses
 LATENCY = 0.06              # s: pose -> /joint_states -> /tf -> /xform_world takes about two ticks
 
 
@@ -74,8 +75,8 @@ def main():
         if m.get("topic") != "/xform_world" or now < loop_start - 1.0:
             continue                      # first pass (we keep reading so the socket doesn't back up)
         t = now - loop_start - LATENCY
-        if t >= period:
-            break
+        if t >= period - SEAM:
+            break                         # the next loop's first move is already starting; stop before it
         entries = m["msg"]["transforms"]
         names = [e["child_frame_id"] for e in entries]
         if links is None:
