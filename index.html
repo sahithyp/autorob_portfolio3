@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steve's Moonwalk · EECS 367 Project 3</title>
+<meta name="description" content="A Minecraft-style robot performs a finite-state-machine moonwalk, drawn with three.js from forward-kinematics matrices I computed myself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#robot">Skip to the robot</a>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Steve's Moonwalk</h1>
+    <div class="sub">A Minecraft robot, a finite state machine, and <span>48 beats</span> of groove.</div>
+    <div class="dim" style="color:#fff;text-shadow:2px 2px 0 #000">EECS 367 · AutoRob · Project 3: Forward Kinematics · Sahithy Prattipati</div>
+    <nav class="jump" aria-label="Sections">
+      <a class="btn" href="#video">Video</a>
+      <a class="btn" href="#robot">Live replay</a>
+      <a class="btn" href="#about-robot">The robot</a>
+      <a class="btn" href="#choreography">The dance</a>
+      <a class="btn" href="#drawing">How it's drawn</a>
+      <a class="btn" href="#run">Run it</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================================================== video -->
+  <section class="panel" id="video" aria-labelledby="h-video">
+    <h2 id="h-video">The performance</h2>
+    <div class="video">
+      <video controls preload="metadata" playsinline aria-label="Screen recording of the Minecraft robot performing the moonwalk choreography">
+        <source src="media/moonwalk.mp4" type="video/mp4" id="video-src">
+      </video>
+      <div class="missing" id="video-missing" hidden>
+        <div><b>VIDEO COMING SOON</b>
+        Record the dance (see the README) and save it as <code>media/moonwalk.mp4</code>.</div>
+      </div>
+    </div>
+    <p class="dim" style="margin-top:10px">
+      Recorded from my own viewer while the real runtime (<code>make demo</code>) was driving the robot: a finite state machine
+      sets each beat's joint targets, my forward kinematics turns them into link poses, and the browser draws those poses.
+    </p>
+  </section>
+
+  <!-- ===================================================== live replay -->
+  <section class="panel" id="robot" aria-labelledby="h-robot">
+    <h2 id="h-robot">Live replay</h2>
+    <p>
+      This is the same dance, replayed in your browser. It is not a video and not a hand-made animation:
+      every frame is the set of 4&times;4 matrices my runtime published on <code>/xform_world</code>, recorded once and drawn with three.js.
+      Drag to orbit, scroll to zoom, click a beat in the timeline to jump to it.
+    </p>
+
+    <div class="stage-box">
+      <canvas id="stage" aria-label="3D view of the Minecraft robot dancing" role="img"></canvas>
+      <div class="hud" aria-live="off">
+        <small>BEAT <span id="beatno">1 / 48</span></small>
+        <div id="state">intro_1</div>
+        <div id="section">Intro</div>
+      </div>
+      <div id="loading">Loading the dance&hellip;</div>
+    </div>
+
+    <div class="controls" role="group" aria-label="Playback">
+      <button class="btn" id="play" type="button">&#10074;&#10074; Pause</button>
+      <button class="btn" id="restart" type="button">&#8634; Restart</button>
+      <span class="sep"></span>
+      <button class="btn" id="music" type="button" aria-pressed="false">&#9834; Music on</button>
+      <label>Vol <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7" aria-label="Music volume"> <span id="volv">70%</span></label>
+    </div>
+    <div class="controls" role="group" aria-label="Camera">
+      <button class="btn" id="view-three" type="button">3/4 view</button>
+      <button class="btn" id="view-side" type="button">Side view</button>
+      <button class="btn" id="view-front" type="button">Front view</button>
+      <label><input type="checkbox" id="follow" checked> Follow robot</label>
+      <label title="Render at half resolution and scale up, for chunky pixels"><input type="checkbox" id="crisp" checked> Pixel look</label>
+    </div>
+
+    <div id="timeline" role="group" aria-label="Choreography timeline, one cell per beat"></div>
+    <ul id="legend" aria-hidden="true"></ul>
+    <p class="dim" style="margin-top:10px">Music is synthesized live in your browser (Web Audio). No audio files, nothing sampled.</p>
+  </section>
+
+  <!-- ===================================================== the robot -->
+  <section class="panel" id="about-robot" aria-labelledby="h-about">
+    <h2 id="h-about">The robot</h2>
+    <div class="cols">
+      <div>
+        <p>
+          Steve is a Minecraft-style humanoid described in a URDF file: <b>25 links</b> made of boxes and
+          <b>12 movable joints</b>. One Minecraft pixel is 0.04&nbsp;m, so the body is 8&times;12&times;4 px,
+          the head is a 0.32&nbsp;m cube, and each limb is split into pieces so it can bend.
+          The robot faces +x; every arm and leg joint turns about the y axis.
+        </p>
+        <p>
+          One part is not from Minecraft: a <b>prismatic antenna</b> on top of the head, which slides up 0&ndash;0.3&nbsp;m.
+          The joint tree matches the course's mini humanoid test robot, and the antenna gives the dance a joint that moves in a straight line instead of rotating, which makes a nice beat accent.
+          The face (eyes, nose, mouth), hair, sleeves and shoes hang off <b>fixed</b> joints, so they ride along with their parent link.
+        </p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption class="skip">Movable joints</caption>
+          <thead><tr><th>Joint</th><th>Type</th><th>Range</th></tr></thead>
+          <tbody>
+            <tr><td>neck_yaw</td><td>revolute</td><td>&plusmn;1.5 rad</td></tr>
+            <tr><td>antenna</td><td>prismatic</td><td>0 &ndash; 0.3 m</td></tr>
+            <tr><td>l/r_shoulder</td><td>revolute</td><td>&plusmn;3 rad</td></tr>
+            <tr><td>l/r_elbow</td><td>revolute</td><td>0 &ndash; 2.5 rad</td></tr>
+            <tr><td>l/r_wrist</td><td>continuous</td><td>no limit</td></tr>
+            <tr><td>l/r_hip</td><td>revolute</td><td>&plusmn;2 rad</td></tr>
+            <tr><td>l/r_knee</td><td>revolute</td><td>0 &ndash; 2.5 rad</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="dim">
+      Minecraft is a trademark of Mojang Studios. This is a fan-style robot made of plain boxes for a class project and is not affiliated with or endorsed by them.
+    </p>
+  </section>
+
+  <!-- ===================================================== choreography -->
+  <section class="panel" id="choreography" aria-labelledby="h-chor">
+    <h2 id="h-chor">The choreography</h2>
+    <p>
+      The dance is a <b>finite state machine</b>: 48 states, one per beat, at 120&nbsp;BPM, so the loop is exactly 24&nbsp;seconds.
+      Each state is a setpoint for the joints. When the robot has reached it (every named joint within the state's <code>epsilon</code>)
+      the machine follows the state's <code>on_arrival</code> transition to the next beat, and the last state loops back to the first.
+    </p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Beats</th><th>Section</th><th>What Steve does</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1&ndash;8</td><td>Intro</td><td>Squat-and-pop bounce, head turns, antenna pops, tips an imaginary hat.</td></tr>
+          <tr><td class="n">9&ndash;16</td><td>Moonwalk</td><td>Glides backwards 0.64&nbsp;m while the legs run a forward walking cycle.</td></tr>
+          <tr><td class="n">17&ndash;24</td><td>Jazz hands</td><td>Hands up with spinning wrists, "raise the roof" pumps, then a kick on each side.</td></tr>
+          <tr><td class="n">25&ndash;28</td><td>Spin</td><td>Crouch, jump with tucked legs, half turn in the air, land with an antenna pop.</td></tr>
+          <tr><td class="n">29&ndash;32</td><td>Disco</td><td>Alternating pointing poses with hip sway.</td></tr>
+          <tr><td class="n">33&ndash;40</td><td>Moonwalk back</td><td>Facing the other way now, glides back to the start.</td></tr>
+          <tr><td class="n">41&ndash;44</td><td>Spin</td><td>Another half turn, back to the original heading.</td></tr>
+          <tr><td class="n">45&ndash;48</td><td>Finale</td><td>Deep crouch, then arms-up wrist spin and a settle, ready to loop.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What makes it a moonwalk</h3>
+    <p>
+      The illusion is a mismatch between the feet and the body. Every beat one leg <i>swings</i>: thigh forward, knee folded, toe down.
+      The other <i>supports</i>: straight and leaning back. They swap on the next beat, with the opposite arm swinging forward, exactly like walking forward.
+      Meanwhile the whole robot slides <i>backwards</i> at a constant 0.16&nbsp;m/s, so the planted foot never seems to push off the ground.
+    </p>
+    <p>
+      Joints alone cannot move the robot's base, so I gave each state two optional extras, described below.
+    </p>
+<pre><span class="cm">// one beat of the moonwalk (trimmed): joints, then where the body is gliding to</span>
+{ "name": "moonwalk_a_1", "epsilon": 0.08,
+  "hold": 0.5,                                   <span class="cm">// at least this many seconds: keeps every transition on the beat</span>
+  "base": { "x": -0.08, "z": 0.712, "yaw": 0 },  <span class="cm">// published on /global_pose, glides at constant speed over the hold</span>
+  "target": {
+    "joint_names": ["neck_yaw", "l_shoulder", "r_shoulder", "l_hip", "l_knee", "r_hip", "r_knee", ...],
+    "positions":   [ 0.25,       0.6,          -0.7,         -0.45,   1.3,      0.18,    0.0,     ...] },
+  "on_arrival": "next",
+  "transitions": [{ "name": "next", "next_state": "moonwalk_a_2" }] }</pre>
+    <ul>
+      <li><code>hold</code> makes the machine wait out the beat, and schedules the next transition from the beat grid instead of from "now", so the loop is 24.00&nbsp;s every time and stays locked to the music (I measured it over two loops).</li>
+      <li><code>base</code> moves the robot's root along <code>/global_pose</code>. With a <code>hold</code> it moves at constant speed, which is the moonwalk glide.</li>
+    </ul>
+    <p class="dim">Both are optional and ignored by plain choreographies. They live only in the demo-only <code>finite_state_machine</code> node, so the graded runtime (<code>make run</code>) is unchanged.</p>
+  </section>
+
+  <!-- ===================================================== drawing -->
+  <section class="panel" id="drawing" aria-labelledby="h-draw">
+    <h2 id="h-draw">How the robot is drawn</h2>
+    <p>The viewer is its own client: it never does kinematics. It only draws what the runtime says.</p>
+    <ol class="steps">
+      <li><b>Parse the URDF for looks only.</b> For each link I read the first <code>&lt;visual&gt;</code>: a box, cylinder or sphere, its origin offset, and its colour.
+          Each becomes a three.js mesh inside a <code>Group</code> for that link, with <code>matrixAutoUpdate = false</code> because the runtime's matrix is the whole transform.</li>
+      <li><b>The runtime does the forward kinematics.</b> <code>robot_state_publisher</code> turns <code>/joint_states</code> into a <code>/tf</code> tree. It uses my own quaternion maths and the standard-library XML parser, with no kinematics or transform library.
+          <code>robot_world_state_publisher</code> composes the tree with <code>/global_pose</code> and publishes one 4&times;4 matrix per link on <code>/xform_world</code>.</li>
+      <li><b>Put each group where its matrix says.</b> The matrices are column-major, which is exactly the layout of <code>Matrix4.fromArray</code>, so there is nothing to transpose.</li>
+      <li><b>Convert z-up to y-up once.</b> URDF is z-up and three.js is y-up. Instead of converting every matrix, all link groups sit inside a single parent rotated &minus;90&deg; about x.</li>
+    </ol>
+<pre><span class="kw">const</span> zup = <span class="kw">new</span> THREE.Group();
+zup.rotation.x = -Math.PI / <span class="st">2</span>;                  <span class="cm">// URDF z-up  ->  three.js y-up, for every link at once</span>
+
+<span class="cm">// per frame: the runtime's matrix for each link, column-major, goes straight in</span>
+group.matrix.<span class="fn">fromArray</span>(entry.matrix);
+group.matrixWorldNeedsUpdate = <span class="kw">true</span>;</pre>
+    <div class="note">
+      <b>Why a replay and not a live connection?</b> A static site cannot reach a Python runtime on my laptop, so this page plays back one recorded loop
+      (<code>assets/replay.json</code>, 634 frames of 25 links, about 1&nbsp;MB) that I captured from the real <code>/xform_world</code> stream with <code>tools/record_replay.py</code>.
+      Between two recorded frames (~33&nbsp;ms apart) the page interpolates linearly. The development viewer, <code>viewer/server.py</code>, subscribes to the live topic instead.
+    </div>
+    <p>
+      A detail I had to fix along the way: the spec only requires <code>/xform_world</code> at 5&nbsp;Hz or faster, and the reference rate is 10&nbsp;Hz, which looks choppy for a dance.
+      Under <code>make demo</code> the publishers run at 30&nbsp;Hz; <code>make run</code> keeps the reference rate.
+    </p>
+    <p>
+      The synchronisation is the same trick in both directions: the dance and the music share one clock. While the music plays, the dance reads its time from the audio hardware clock,
+      so they cannot drift apart, and clicking <i>Music on</i> mid-dance starts the beat on the next 16th note that lines up with where the dancer is.
+    </p>
+  </section>
+
+  <!-- ===================================================== run -->
+  <section class="panel" id="run" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself</h2>
+<pre><span class="cm"># terminal 1: the runtime with the demo nodes (joint_state_publisher + finite_state_machine)</span>
+cd submission &amp;&amp; make demo
+
+<span class="cm"># terminal 2: the live viewer, then open http://127.0.0.1:8080</span>
+python3 viewer/server.py
+<span class="cm">#   load minecraft_steve.urdf, pick "moonwalk", press Start</span>
+
+<span class="cm"># this page, from the portfolio folder</span>
+python3 -m http.server 8000</pre>
+  </section>
+
+  <!-- ===================================================== credits -->
+  <section class="panel" aria-labelledby="h-credits">
+    <h2 id="h-credits">Credits</h2>
+    <ul>
+      <li>Rendering: <a href="https://threejs.org">three.js</a> r128 (MIT).</li>
+      <li>Fonts: Press Start 2P and VT323 from Google Fonts (SIL Open Font License).</li>
+      <li>Music and sound: synthesized in the browser; no samples.</li>
+      <li>Robot model: <code>minecraft_steve.urdf</code>, with the joint tree of the course's mini humanoid test robot. I did not use the Fetch robot, so there is no Fetch credit to give.</li>
+      <li>Forward kinematics, URDF parsing, the pub/sub gateway, the nodes and the choreography: my own code for EECS 367.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>Made with blocks and quaternions.</footer>
+
+<script>
+  // If the video file is not in the repo yet, show a clear placeholder instead of a dead player.
+  (function () {
+    var src = document.getElementById("video-src"), miss = document.getElementById("video-missing");
+    src.addEventListener("error", function () { miss.hidden = false; });
+  })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script type="module" src="js/viewer.js"></script>
+</body>
+</html>

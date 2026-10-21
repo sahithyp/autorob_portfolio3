@@ -1,0 +1,2310 @@
+{
+ "bpm": 120,
+ "initial_state": "intro_1",
+ "states": [
+  {
+   "name": "intro_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.4,
+     0.2,
+     0.3,
+     1.2,
+     0.0,
+     0.3,
+     1.2,
+     0.0,
+     -0.35,
+     0.7,
+     -0.35,
+     0.7
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.732,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_2"
+    }
+   ]
+  },
+  {
+   "name": "intro_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.4,
+     0.0,
+     0.0,
+     0.4,
+     0.0,
+     -1.0,
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_3"
+    }
+   ]
+  },
+  {
+   "name": "intro_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.4,
+     0.2,
+     0.3,
+     1.2,
+     0.0,
+     0.3,
+     1.2,
+     0.0,
+     -0.35,
+     0.7,
+     -0.35,
+     0.7
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.732,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_4"
+    }
+   ]
+  },
+  {
+   "name": "intro_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.4,
+     0.0,
+     -1.0,
+     1.0,
+     0.0,
+     0.0,
+     0.4,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_5"
+    }
+   ]
+  },
+  {
+   "name": "intro_5",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.3,
+     -0.6,
+     1.6,
+     0.0,
+     -0.6,
+     1.6,
+     0.0,
+     -0.35,
+     0.7,
+     -0.35,
+     0.7
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.732,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_6"
+    }
+   ]
+  },
+  {
+   "name": "intro_6",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.5,
+     0.0,
+     0.5,
+     0.3,
+     0.0,
+     0.5,
+     0.3,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_7"
+    }
+   ]
+  },
+  {
+   "name": "intro_7",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.3,
+     0.3,
+     0.4,
+     1.8,
+     0.0,
+     -2.0,
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_8"
+    }
+   ]
+  },
+  {
+   "name": "intro_8",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     0.5,
+     0.5,
+     0.0,
+     -1.2,
+     1.2,
+     0.0,
+     0.18,
+     0.0,
+     -0.1,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_1"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.08,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_2"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.16,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_3"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.24,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_4"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.32,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_5"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_5",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.4,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_6"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_6",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.48,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_7"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_7",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.56,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_a_8"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_a_8",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_1"
+    }
+   ]
+  },
+  {
+   "name": "hands_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.3,
+     -2.8,
+     0.2,
+     3.0,
+     -2.8,
+     0.2,
+     -3.0,
+     -0.3,
+     0.6,
+     -0.3,
+     0.6
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.734,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_2"
+    }
+   ]
+  },
+  {
+   "name": "hands_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.5,
+     0.0,
+     -2.8,
+     0.2,
+     -3.0,
+     -2.8,
+     0.2,
+     3.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_3"
+    }
+   ]
+  },
+  {
+   "name": "hands_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.3,
+     0.3,
+     -2.8,
+     2.3,
+     0.0,
+     -2.8,
+     2.3,
+     0.0,
+     -0.3,
+     0.6,
+     -0.3,
+     0.6
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.734,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_4"
+    }
+   ]
+  },
+  {
+   "name": "hands_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.3,
+     0.0,
+     -2.8,
+     0.3,
+     0.0,
+     -2.8,
+     0.3,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_5"
+    }
+   ]
+  },
+  {
+   "name": "hands_5",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.3,
+     0.3,
+     -2.8,
+     2.3,
+     0.0,
+     -2.8,
+     2.3,
+     0.0,
+     -0.3,
+     0.6,
+     -0.3,
+     0.6
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.734,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_6"
+    }
+   ]
+  },
+  {
+   "name": "hands_6",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.3,
+     0.0,
+     -2.8,
+     0.3,
+     0.0,
+     -2.8,
+     0.3,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_7"
+    }
+   ]
+  },
+  {
+   "name": "hands_7",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.3,
+     -2.8,
+     0.2,
+     0.0,
+     0.7,
+     0.4,
+     0.0,
+     -1.0,
+     1.2,
+     0.1,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7296,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "hands_8"
+    }
+   ]
+  },
+  {
+   "name": "hands_8",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.5,
+     0.3,
+     0.7,
+     0.4,
+     0.0,
+     -2.8,
+     0.2,
+     0.0,
+     0.1,
+     0.0,
+     -1.0,
+     1.2
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7296,
+    "yaw": 0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_a_crouch"
+    }
+   ]
+  },
+  {
+   "name": "spin_a_crouch",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     0.9,
+     0.3,
+     0.0,
+     0.9,
+     0.3,
+     0.0,
+     -0.7,
+     1.4,
+     -0.7,
+     1.4
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.6844,
+    "yaw": 0.0
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_a_launch"
+    }
+   ]
+  },
+  {
+   "name": "spin_a_launch",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.3,
+     -2.6,
+     0.3,
+     0.0,
+     -2.6,
+     0.3,
+     0.0,
+     -0.9,
+     1.8,
+     -0.9,
+     1.8
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.9,
+    "yaw": 1.5708
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_a_land"
+    }
+   ]
+  },
+  {
+   "name": "spin_a_land",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     -1.2,
+     0.2,
+     0.0,
+     -1.2,
+     0.2,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_a_pop"
+    }
+   ]
+  },
+  {
+   "name": "spin_a_pop",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.3,
+     -1.0,
+     0.4,
+     0.0,
+     -1.0,
+     0.4,
+     0.0,
+     -0.4,
+     0.8,
+     -0.4,
+     0.8
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7288,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "disco_1"
+    }
+   ]
+  },
+  {
+   "name": "disco_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.0,
+     0.8,
+     0.2,
+     0.0,
+     -2.7,
+     0.1,
+     0.0,
+     -0.25,
+     0.5,
+     0.25,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7348,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "disco_2"
+    }
+   ]
+  },
+  {
+   "name": "disco_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.5,
+     0.0,
+     -2.7,
+     0.1,
+     0.0,
+     0.8,
+     0.2,
+     0.0,
+     0.25,
+     0.0,
+     -0.25,
+     0.5
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7348,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "disco_3"
+    }
+   ]
+  },
+  {
+   "name": "disco_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.2,
+     0.8,
+     0.2,
+     0.0,
+     -2.7,
+     0.1,
+     0.0,
+     -0.25,
+     0.5,
+     0.25,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.7348,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "disco_4"
+    }
+   ]
+  },
+  {
+   "name": "disco_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.3,
+     -2.7,
+     0.1,
+     0.0,
+     -2.7,
+     0.1,
+     0.0,
+     -0.35,
+     0.7,
+     -0.35,
+     0.7
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.64,
+    "y": 0.0,
+    "z": 0.732,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_1"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.56,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_2"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.48,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_3"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.4,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_4"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.32,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_5"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_5",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.24,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_6"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_6",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.16,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_7"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_7",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.25,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     -0.7,
+     0.5,
+     0.0,
+     -0.45,
+     1.3,
+     0.18,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": -0.08,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "moonwalk_b_8"
+    }
+   ]
+  },
+  {
+   "name": "moonwalk_b_8",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.25,
+     0.15,
+     -0.7,
+     0.5,
+     0.0,
+     0.6,
+     0.5,
+     0.0,
+     0.18,
+     0.0,
+     -0.45,
+     1.3
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.7337,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_b_crouch"
+    }
+   ]
+  },
+  {
+   "name": "spin_b_crouch",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     0.9,
+     0.3,
+     0.0,
+     0.9,
+     0.3,
+     0.0,
+     -0.7,
+     1.4,
+     -0.7,
+     1.4
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.6844,
+    "yaw": 3.1416
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_b_launch"
+    }
+   ]
+  },
+  {
+   "name": "spin_b_launch",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.3,
+     -2.6,
+     0.3,
+     0.0,
+     -2.6,
+     0.3,
+     0.0,
+     -0.9,
+     1.8,
+     -0.9,
+     1.8
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.9,
+    "yaw": 4.7124
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_b_land"
+    }
+   ]
+  },
+  {
+   "name": "spin_b_land",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     -1.2,
+     0.2,
+     0.0,
+     -1.2,
+     0.2,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "spin_b_pop"
+    }
+   ]
+  },
+  {
+   "name": "spin_b_pop",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.3,
+     -1.0,
+     0.4,
+     0.0,
+     -1.0,
+     0.4,
+     0.0,
+     -0.4,
+     0.8,
+     -0.4,
+     0.8
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.7288,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "finale_1"
+    }
+   ]
+  },
+  {
+   "name": "finale_1",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     0.6,
+     0.3,
+     0.0,
+     0.6,
+     0.3,
+     0.0,
+     -0.8,
+     1.6,
+     -0.8,
+     1.6
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.6605,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "finale_2"
+    }
+   ]
+  },
+  {
+   "name": "finale_2",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.5,
+     0.3,
+     -2.8,
+     0.1,
+     3.0,
+     -2.8,
+     0.1,
+     -3.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "finale_3"
+    }
+   ]
+  },
+  {
+   "name": "finale_3",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     -0.5,
+     0.3,
+     -2.8,
+     0.1,
+     -3.0,
+     -2.8,
+     0.1,
+     3.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "finale_4"
+    }
+   ]
+  },
+  {
+   "name": "finale_4",
+   "target": {
+    "joint_names": [
+     "neck_yaw",
+     "antenna",
+     "l_shoulder",
+     "l_elbow",
+     "l_wrist",
+     "r_shoulder",
+     "r_elbow",
+     "r_wrist",
+     "l_hip",
+     "l_knee",
+     "r_hip",
+     "r_knee"
+    ],
+    "positions": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "epsilon": 0.08,
+   "hold": 0.5,
+   "base": {
+    "x": 0,
+    "y": 0.0,
+    "z": 0.72,
+    "yaw": 6.2832
+   },
+   "on_arrival": "next",
+   "transitions": [
+    {
+     "name": "next",
+     "next_state": "intro_1"
+    }
+   ]
+  }
+ ]
+}
